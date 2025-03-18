@@ -1,4 +1,5 @@
 import { DataSource } from 'typeorm';
+import { MovieEntity } from '../../modules/movies/entities/movie.entity';
 
 export const databaseProviders = [
   {
@@ -8,13 +9,11 @@ export const databaseProviders = [
         type: 'postgres',
         host: 'localhost',
         port: 5432,
-        username: 'postgres',
-        password: 'postgres', // Change to your DB password
-        database: 'popcorn_palace',
-        entities: [
-          __dirname + '/../**/*.entity{.ts,.js}',
-        ],
-        synchronize: true, // Set to false in production
+        username: 'popcorn-palace',
+        password: 'popcorn-palace',
+        database: 'popcorn-palace',
+        entities: [MovieEntity],
+        synchronize: true,
       });
 
       return dataSource.initialize();

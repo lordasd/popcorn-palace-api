@@ -1,11 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn  } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('movies')
 export class MovieEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ unique: true })
   title: string;
 
   @Column()
@@ -14,9 +14,9 @@ export class MovieEntity {
   @Column()
   duration: number;
 
-  @Column()
+  @Column('float')
   rating: number;
 
   @Column()
-  releaseYear: Date;
+  releaseYear: number;
 }
