@@ -1,5 +1,6 @@
 import { DataSource } from 'typeorm';
 import { MovieEntity } from '../../modules/movies/entities/movie.entity';
+import { ShowtimeEntity } from '../../modules/showtimes/entities/showtime.entity';
 
 export const databaseProviders = [
   {
@@ -12,7 +13,7 @@ export const databaseProviders = [
         username: 'popcorn-palace',
         password: 'popcorn-palace',
         database: 'popcorn-palace',
-        entities: [MovieEntity],
+        entities: [MovieEntity, ShowtimeEntity],
         synchronize: true,
       });
 
