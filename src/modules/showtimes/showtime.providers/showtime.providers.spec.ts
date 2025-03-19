@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { databaseProviders } from './database.providers';
+import { showtimeProviders } from './showtime.providers';
 
-describe('DatabaseProviders', () => {
+describe('ShowtimeProviders', () => {
   let provider: any[];
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [...databaseProviders],
+      providers: [...showtimeProviders],
     }).compile();
 
-    provider = module.get('DATA_SOURCE');
+    provider = module.get('SHOWTIME_REPOSITORY');
   });
 
   it('should be defined', () => {
