@@ -9,17 +9,17 @@ export class MoviesController {
   constructor(private readonly moviesService: MoviesService) {}
 
   @Get('all')
-  findAll(): Promise<MovieEntity[]> {
+  async findAll(): Promise<MovieEntity[]> {
     return this.moviesService.findAll();
   }
 
   @Post()
-  create(@Body() createMovieDto: CreateMovieDto): Promise<MovieEntity> {
+  async create(@Body() createMovieDto: CreateMovieDto): Promise<MovieEntity> {
     return this.moviesService.create(createMovieDto);
   }
 
   @Post('update/:movieTitle')
-  update(
+  async update(
     @Param('movieTitle') movieTitle: string,
     @Body() updateMovieDto: UpdateMovieDto,
   ): Promise<void> {
@@ -27,7 +27,7 @@ export class MoviesController {
   }
 
   @Delete(':movieTitle')
-  remove(@Param('movieTitle') movieTitle: string): Promise<void> {
+  async remove(@Param('movieTitle') movieTitle: string): Promise<void> {
     return this.moviesService.remove(movieTitle);
   }
 }
