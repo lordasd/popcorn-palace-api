@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
 import { ShowtimesController } from './showtimes.controller';
 import { ShowtimesService } from './showtimes.service';
-import { ShowtimeProviders } from './showtime.providers/showtime.providers';
+import { showtimeProviders } from './showtime.providers/showtime.providers';
+import { DatabaseModule } from '../../database/database.module';
 
 @Module({
+  imports: [DatabaseModule],
   controllers: [ShowtimesController],
-  providers: [ShowtimesService, ShowtimeProviders]
+  providers: [...showtimeProviders, ShowtimesService],
 })
 export class ShowtimesModule {}

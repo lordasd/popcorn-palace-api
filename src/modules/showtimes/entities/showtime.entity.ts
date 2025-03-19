@@ -6,7 +6,7 @@ export class ShowtimeEntity {
   id: number;
 
   @Column()
-  showtimeId: number;
+  movieId: number;
 
   @Column()
   theater: string;

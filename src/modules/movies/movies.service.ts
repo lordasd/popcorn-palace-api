@@ -27,6 +27,12 @@ export class MoviesService {
     return movie;
   }
 
+  async findById(id: number): Promise<MovieEntity> {
+    const movie = await this.movieRepository.findOne({ where: { id } });
+    if (!movie) throw new NotFoundException(`Movie with ID ${id} not found`);
+    return movie;
+  }
+
   async create(createMovieDto: CreateMovieDto): Promise<MovieEntity> {
     const existingMovie = await this.movieRepository.findOne({
       where: { title: createMovieDto.title },
@@ -42,13 +48,14 @@ export class MoviesService {
   }
 
   async update(title: string, updateMovieDto: UpdateMovieDto): Promise<void> {
-    const movie = await this.findByTitle(title);
-    this.movieRepository.merge(movie, updateMovieDto);
-    await this.movieRepository.save(movie);
+    const existingMovie = await this.findByTitle(title);
+    if (!existingMovie) throw new NotFoundException(`Movie with title ${title} not found`);
+    this.movieRepository.merge(existingMovie, updateMovieDto);
+    await this.movieRepository.save(existingMovie);
   }
 
   async remove(title: string): Promise<void> {
-    const movie = await this.findByTitle(title);
-    await this.movieRepository.remove(movie);
+    const existingMovie = await this.findByTitle(title);
+    await this.movieRepository.remove(existingMovie);
   }
 }

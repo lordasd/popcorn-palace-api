@@ -10,7 +10,7 @@ import {
 export class CreateShowtimeDto {
   @IsNumber()
   @IsNotEmpty()
-  showtimeId: number;
+  movieId: number;
 
   @IsString()
   @IsNotEmpty()
