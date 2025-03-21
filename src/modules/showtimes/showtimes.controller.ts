@@ -1,11 +1,12 @@
 import {
-  BadRequestException,
   Body,
   Controller,
   Delete,
   Get,
   Param,
   Post,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { CreateShowtimeDto } from './dto/create-showtime.dto';
 import { UpdateShowtimeDto } from './dto/update-showtime.dto';
@@ -22,18 +23,15 @@ export class ShowtimesController {
   }
 
   @Post()
+  @UsePipes(new ValidationPipe({ transform: true }))
   create(
     @Body() createShowtimeDto: CreateShowtimeDto,
   ): Promise<ShowtimeEntity> {
-    try {
-      createShowtimeDto.validate();
-      return this.showtimeService.create(createShowtimeDto);
-    } catch (error) {
-      throw new BadRequestException(error);
-    }
+    return this.showtimeService.create(createShowtimeDto);
   }
 
   @Post('/update/:showtimeId')
+  @UsePipes(new ValidationPipe({ transform: true }))
   update(
     @Param('showtimeId') showtimeId: number,
     @Body() updateShowtimeDto: UpdateShowtimeDto,
