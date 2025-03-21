@@ -2,7 +2,7 @@ import {
   Body,
   Controller,
   Delete,
-  Get,
+  Get, HttpCode, HttpStatus,
   Param,
   Post,
   UsePipes,
@@ -31,6 +31,7 @@ export class ShowtimesController {
   }
 
   @Post('/update/:showtimeId')
+  @HttpCode(HttpStatus.OK)
   @UsePipes(new ValidationPipe({ transform: true }))
   update(
     @Param('showtimeId') showtimeId: number,
