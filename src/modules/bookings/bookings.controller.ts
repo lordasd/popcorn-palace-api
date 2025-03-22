@@ -9,8 +9,8 @@ export class BookingsController {
   @Post()
   async create(
     @Body() createBookingDto: CreateBookingDto,
-  ): Promise<{ id: string }> {
+  ): Promise<{ bookingId: string }> {
     const booking = await this.bookingsService.create(createBookingDto);
-    return { id: booking.id };
+    return { bookingId: booking.bookingId };
   }
 }
