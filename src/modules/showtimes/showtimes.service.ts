@@ -74,7 +74,6 @@ export class ShowtimesService {
 
   async delete(showtimeId: number): Promise<void> {
     const existingShow = await this.findOne(showtimeId);
-    if (!existingShow) throw new NotFoundException('Show not found');
     await this.showtimeRepository.remove(existingShow);
   }
 

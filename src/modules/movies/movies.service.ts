@@ -49,8 +49,6 @@ export class MoviesService {
 
   async update(title: string, updateMovieDto: UpdateMovieDto): Promise<void> {
     const existingMovie = await this.findByTitle(title);
-    if (!existingMovie)
-      throw new NotFoundException(`Movie with title ${title} not found`);
     this.moviesRepository.merge(existingMovie, updateMovieDto);
     await this.moviesRepository.save(existingMovie);
   }

@@ -11,6 +11,10 @@ import { IsAfterDate } from './date-validation.decorator';
 
 export class CreateShowtimeDto {
   @IsNumber()
+  @Min(0)
+  price: number;
+
+  @IsNumber()
   @IsNotEmpty()
   movieId: number;
 
@@ -25,10 +29,6 @@ export class CreateShowtimeDto {
   @IsDate()
   @ValidateIf((o) => !!o.startTime)
   @Type(() => Date)
-  @IsAfterDate('startTime', { message: 'End time must be after start time' })
+  @IsAfterDate('startTime')
   endTime: Date;
-
-  @IsNumber()
-  @Min(0)
-  price: number;
 }
