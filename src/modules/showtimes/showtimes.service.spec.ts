@@ -286,7 +286,7 @@ describe('ShowtimesService', () => {
 
     it('should handle partial update with only startTime', async () => {
       const startTimeUpdate = {
-        startTime: new Date('2023-01-01T09:00:00Z'),
+        startTime: new Date('2025-01-01T09:00:00Z'),
       };
 
       showtimeRepository.findOne.mockResolvedValue(existingShowtime);

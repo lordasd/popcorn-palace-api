@@ -131,8 +131,8 @@ describe('ShowtimesController', () => {
       const createShowtimeDto: CreateShowtimeDto = {
         movieId: 999, // Non-existent movie
         theater: 'Theater 1',
-        startTime: new Date('2023-01-01T10:00:00Z'),
-        endTime: new Date('2023-01-01T12:00:00Z'),
+        startTime: new Date('2025-01-01T10:00:00Z'),
+        endTime: new Date('2025-01-01T12:00:00Z'),
         price: 15.5,
       };
 
