@@ -22,7 +22,19 @@ cd popcorn-palace-api
 npm install
 ```
 
-### 3. Database Setup
+### 3. Environment Configuration
+The application uses environment variables for configuration. Create a .env file in the project root with the following content:
+
+```bash
+DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=popcorn-palace
+DB_PASSWORD=popcorn-palace
+DB_DATABASE=popcorn-palace
+NODE_ENV=development
+```
+
+### 4. Database Setup
 The project uses PostgreSQL as the database. You can run it using Docker with the provided compose.yml file:
 
 ```bash
