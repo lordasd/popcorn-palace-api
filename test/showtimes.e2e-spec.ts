@@ -64,6 +64,10 @@ describe('Showtimes API (e2e)', () => {
     testMovieId = movie.id;
   });
 
+  afterEach(async () => {
+    await showtimesRepository.delete({});
+  });
+
   afterAll(async () => {
     await showtimesRepository.delete({});
     await moviesRepository.delete({ title: testMovie.title });

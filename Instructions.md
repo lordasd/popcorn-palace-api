@@ -4,8 +4,8 @@
 This document provides instructions on how to set up, build, run, and test the Popcorn Palace Movie Ticket Booking System, a RESTful API built with NestJS and TypeScript.
 
 ## Prerequisites
-- Node.js (v16 or higher)
-- npm (v7 or higher)
+- Node.js (v18 or higher)
+- npm (v9 or higher)
 - Docker and Docker Compose (for running PostgreSQL)
 - Git
 
