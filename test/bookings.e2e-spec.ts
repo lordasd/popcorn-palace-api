@@ -82,6 +82,10 @@ describe('Bookings API (e2e)', () => {
     testShowtimeId = showtime.id;
   });
 
+  afterEach(async () => {
+    await bookingsRepository.delete({});
+  });
+
   afterAll(async () => {
     await bookingsRepository.delete({});
     await showtimesRepository.delete({});

@@ -60,6 +60,10 @@ describe('Movies API (e2e)', () => {
     await cleanupMoviesByTitles(testMovieTitles);
   });
 
+  afterEach(async () => {
+    await moviesRepository.delete({});
+  });
+
   afterAll(async () => {
     await cleanupMoviesByTitles(testMovieTitles);
     await app.close();
