@@ -3,7 +3,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity('bookings')
 export class BookingEntity {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  bookingId: string;
 
   @Column()
   showtimeId: number;

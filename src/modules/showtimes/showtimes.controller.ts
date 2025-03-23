@@ -1,9 +1,10 @@
 import {
-  BadRequestException,
   Body,
   Controller,
   Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   Post,
 } from '@nestjs/common';
@@ -17,24 +18,23 @@ export class ShowtimesController {
   constructor(private readonly showtimeService: ShowtimesService) {}
 
   @Get(':showtimeId')
-  findOne(@Param('showtimeId') showtimeId: number): Promise<ShowtimeEntity> {
+  async findOne(
+    @Param('showtimeId') showtimeId: number,
+  ): Promise<ShowtimeEntity> {
     return this.showtimeService.findOne(showtimeId);
   }
 
   @Post()
-  create(
+  @HttpCode(HttpStatus.OK)
+  async create(
     @Body() createShowtimeDto: CreateShowtimeDto,
   ): Promise<ShowtimeEntity> {
-    try {
-      createShowtimeDto.validate();
-      return this.showtimeService.create(createShowtimeDto);
-    } catch (error) {
-      throw new BadRequestException(error);
-    }
+    return this.showtimeService.create(createShowtimeDto);
   }
 
   @Post('/update/:showtimeId')
-  update(
+  @HttpCode(HttpStatus.OK)
+  async update(
     @Param('showtimeId') showtimeId: number,
     @Body() updateShowtimeDto: UpdateShowtimeDto,
   ): Promise<void> {
@@ -42,7 +42,7 @@ export class ShowtimesController {
   }
 
   @Delete(':showtimeId')
-  delete(@Param('showtimeId') showtimeId: number) {
+  async delete(@Param('showtimeId') showtimeId: number) {
     return this.showtimeService.delete(showtimeId);
   }
 }

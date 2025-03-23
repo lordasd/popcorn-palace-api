@@ -1,6 +1,5 @@
 import {
   BadRequestException,
-  Inject,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -9,11 +8,12 @@ import { Repository } from 'typeorm';
 import { CreateShowtimeDto } from './dto/create-showtime.dto';
 import { UpdateShowtimeDto } from './dto/update-showtime.dto';
 import { MoviesService } from '../movies/movies.service';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class ShowtimesService {
   constructor(
-    @Inject('SHOWTIME_REPOSITORY')
+    @InjectRepository(ShowtimeEntity)
     private showtimeRepository: Repository<ShowtimeEntity>,
     private moviesService: MoviesService,
   ) {}
@@ -74,7 +74,6 @@ export class ShowtimesService {
 
   async delete(showtimeId: number): Promise<void> {
     const existingShow = await this.findOne(showtimeId);
-    if (!existingShow) throw new NotFoundException('Show not found');
     await this.showtimeRepository.remove(existingShow);
   }
 

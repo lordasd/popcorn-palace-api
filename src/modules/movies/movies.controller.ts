@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  HttpCode,
+  HttpStatus,
+} from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
@@ -14,11 +23,13 @@ export class MoviesController {
   }
 
   @Post()
+  @HttpCode(HttpStatus.OK)
   async create(@Body() createMovieDto: CreateMovieDto): Promise<MovieEntity> {
     return this.moviesService.create(createMovieDto);
   }
 
   @Post('update/:movieTitle')
+  @HttpCode(HttpStatus.OK)
   async update(
     @Param('movieTitle') movieTitle: string,
     @Body() updateMovieDto: UpdateMovieDto,

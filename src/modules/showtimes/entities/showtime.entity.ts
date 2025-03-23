@@ -5,6 +5,9 @@ export class ShowtimeEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column('float')
+  price: number;
+
   @Column()
   movieId: number;
 
@@ -16,7 +19,4 @@ export class ShowtimeEntity {
 
   @Column()
   endTime: Date;
-
-  @Column('float')
-  price: number;
 }

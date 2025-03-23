@@ -1,13 +1,14 @@
-import { ConflictException, Inject, Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { BookingEntity } from './entities/booking.entity';
 import { CreateBookingDto } from './dto/create-booking.dto';
 import { ShowtimesService } from '../showtimes/showtimes.service';
 import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class BookingsService {
   constructor(
-    @Inject('BOOKING_REPOSITORY')
+    @InjectRepository(BookingEntity)
     private bookingsRepository: Repository<BookingEntity>,
     private readonly showtimesService: ShowtimesService,
   ) {}
