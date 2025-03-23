@@ -23,6 +23,7 @@ export class MoviesController {
   }
 
   @Post()
+  @HttpCode(HttpStatus.OK)
   async create(@Body() createMovieDto: CreateMovieDto): Promise<MovieEntity> {
     return this.moviesService.create(createMovieDto);
   }
