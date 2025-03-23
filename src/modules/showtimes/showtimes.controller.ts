@@ -25,6 +25,7 @@ export class ShowtimesController {
   }
 
   @Post()
+  @HttpCode(HttpStatus.OK)
   async create(
     @Body() createShowtimeDto: CreateShowtimeDto,
   ): Promise<ShowtimeEntity> {
