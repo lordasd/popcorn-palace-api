@@ -7,8 +7,6 @@ import {
   HttpStatus,
   Param,
   Post,
-  UsePipes,
-  ValidationPipe,
 } from '@nestjs/common';
 import { CreateShowtimeDto } from './dto/create-showtime.dto';
 import { UpdateShowtimeDto } from './dto/update-showtime.dto';
@@ -20,13 +18,14 @@ export class ShowtimesController {
   constructor(private readonly showtimeService: ShowtimesService) {}
 
   @Get(':showtimeId')
-  findOne(@Param('showtimeId') showtimeId: number): Promise<ShowtimeEntity> {
+  async findOne(
+    @Param('showtimeId') showtimeId: number,
+  ): Promise<ShowtimeEntity> {
     return this.showtimeService.findOne(showtimeId);
   }
 
   @Post()
-  @UsePipes(new ValidationPipe({ transform: true }))
-  create(
+  async create(
     @Body() createShowtimeDto: CreateShowtimeDto,
   ): Promise<ShowtimeEntity> {
     return this.showtimeService.create(createShowtimeDto);
@@ -34,8 +33,7 @@ export class ShowtimesController {
 
   @Post('/update/:showtimeId')
   @HttpCode(HttpStatus.OK)
-  @UsePipes(new ValidationPipe({ transform: true }))
-  update(
+  async update(
     @Param('showtimeId') showtimeId: number,
     @Body() updateShowtimeDto: UpdateShowtimeDto,
   ): Promise<void> {
@@ -43,7 +41,7 @@ export class ShowtimesController {
   }
 
   @Delete(':showtimeId')
-  delete(@Param('showtimeId') showtimeId: number) {
+  async delete(@Param('showtimeId') showtimeId: number) {
     return this.showtimeService.delete(showtimeId);
   }
 }
