@@ -48,6 +48,10 @@ npm run build
 This will compile the TypeScript code into JavaScript in the `dist` directory.
 
 ## Running the Application
+Start the PostgreSQL container if it's not already running
+```bash
+docker-compose up -d
+```
 
 ### Development Mode
 ```bash
@@ -64,6 +68,10 @@ npm run start:prod
 This starts the application in production mode using the compiled JavaScript code.
 
 ## Testing
+Start the PostgreSQL container if it's not already running
+```bash
+docker-compose up -d
+```
 
 ### Running Unit Tests
 ```bash
